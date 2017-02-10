@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackendApiService } from '../backend-api.service';
 
 @Component({
   selector: 'app-container',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContainerComponent implements OnInit {
 
-  constructor() { }
+  cases: any = [];
+
+  constructor(private casesService: BackendApiService) { }
 
   ngOnInit() {
+
+   this.casesService.getAllCases().subscribe(cases => {
+     this.cases = cases;
+   });
+
   }
 
 }
